@@ -5,9 +5,15 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_routes.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  bool isLogin = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +32,10 @@ class RegistrationPage extends StatelessWidget {
                   width: 100,
                 ),
                 const SizedBox(height: 40),
-                const Text(
-                  "Criar conta como Motorista",
+                Text(
+                  !isLogin
+                      ? "Criar conta como Motorista"
+                      : "Login como Motorista",
                   style: TextStyle(fontSize: 25, fontFamily: "Brand-Bold"),
                 ),
                 Form(
@@ -36,18 +44,19 @@ class RegistrationPage extends StatelessWidget {
                     child: Column(
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: "Nome Completo",
-                            labelStyle: TextStyle(
-                              fontSize: 14,
+                        if (!isLogin)
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: "Nome Completo",
+                              labelStyle: TextStyle(
+                                fontSize: 14,
+                              ),
+                              hintStyle:
+                                  TextStyle(color: Colors.grey, fontSize: 10),
                             ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10),
+                            style: TextStyle(fontSize: 14),
                           ),
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        SizedBox(height: 10),
+                        if (!isLogin) SizedBox(height: 10),
                         TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -61,19 +70,20 @@ class RegistrationPage extends StatelessWidget {
                           style: TextStyle(fontSize: 14),
                         ),
                         SizedBox(height: 10),
-                        TextField(
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            labelText: "Número de celular",
-                            labelStyle: TextStyle(
-                              fontSize: 14,
+                        if (!isLogin)
+                          TextField(
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              labelText: "Número de celular",
+                              labelStyle: TextStyle(
+                                fontSize: 14,
+                              ),
+                              hintStyle:
+                                  TextStyle(color: Colors.grey, fontSize: 10),
                             ),
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 10),
+                            style: TextStyle(fontSize: 14),
                           ),
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        SizedBox(height: 10),
+                        if (!isLogin) SizedBox(height: 10),
                         TextField(
                           obscureText: true,
                           decoration: InputDecoration(
@@ -93,7 +103,7 @@ class RegistrationPage extends StatelessWidget {
                             height: 35,
                             child: Center(
                               child: Text(
-                                "REGISTRAR",
+                                isLogin == false ? "REGISTRAR" : "ENTRAR",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: "Brand-Bold",
@@ -112,16 +122,14 @@ class RegistrationPage extends StatelessWidget {
                         ),
                         TextButton(
                           child: Text(
-                            "Já possui conta como Motorista? Clique aqui",
+                            !isLogin
+                                ? "Já possui conta como Motorista? Clique aqui"
+                                : "Não possui conto como Motorista? Clique aqui",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: "Brand-Regular"),
                           ),
-                          onPressed: () {
-                            // Navigator.of(context).pop();
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                AppRoutes.LOGIN_PAGE, (route) => false);
-                          },
+                          onPressed: () => setState(() => isLogin = !isLogin),
                         ),
                       ],
                     ),

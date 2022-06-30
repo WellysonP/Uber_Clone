@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
         fontFamily: "Brand-Regular",
         primarySwatch: Colors.blue,
       ),
-      // home: const RegistrationPage(),
-      routes: {
-        AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
-        AppRoutes.REGISTRATION_PAGE: (context) => const RegistrationPage(),
-      },
+      home: const RegistrationPage(),
+      // routes: {
+      //   AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
+      //   AppRoutes.REGISTRATION_PAGE: (context) => const RegistrationPage(),
+      // },
     );
   }
 }
