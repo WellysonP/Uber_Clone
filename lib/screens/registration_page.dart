@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:car_rider/components/brand_colors.dart';
-import 'package:car_rider/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../utils/app_routes.dart';
+
+class RegistrationPage extends StatelessWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 const Text(
-                  "Login como Motorista",
+                  "Criar conta como Motorista",
                   style: TextStyle(fontSize: 25, fontFamily: "Brand-Bold"),
                 ),
                 Form(
@@ -36,9 +37,34 @@ class LoginPage extends StatelessWidget {
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TextField(
+                          decoration: InputDecoration(
+                            labelText: "Nome Completo",
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             labelText: "E-mail",
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                            ),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            labelText: "Número de celular",
                             labelStyle: TextStyle(
                               fontSize: 14,
                             ),
@@ -67,7 +93,7 @@ class LoginPage extends StatelessWidget {
                             height: 35,
                             child: Center(
                               child: Text(
-                                "ENTRAR",
+                                "REGISTRAR",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: "Brand-Bold",
@@ -86,7 +112,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         TextButton(
                           child: Text(
-                            "Não possui conto como Motorista? Clique aqui",
+                            "Já possui conta como Motorista? Clique aqui",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: "Brand-Regular"),
@@ -94,7 +120,7 @@ class LoginPage extends StatelessWidget {
                           onPressed: () {
                             // Navigator.of(context).pop();
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                                AppRoutes.REGISTRATION_PAGE, (route) => false);
+                                AppRoutes.LOGIN_PAGE, (route) => false);
                           },
                         ),
                       ],
