@@ -1,7 +1,5 @@
 import 'package:car_rider/components/Login_provider.dart';
 import 'package:car_rider/screens/login_page.dart';
-import 'package:car_rider/screens/registration_page.dart';
-import 'package:car_rider/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
           fontFamily: "Brand-Regular",
           primarySwatch: Colors.blue,
         ),
-        home: const RegistrationPage(),
+        home: const LoginPage(),
         // routes: {
         //   AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
         //   AppRoutes.REGISTRATION_PAGE: (context) => const RegistrationPage(),

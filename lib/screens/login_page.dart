@@ -1,111 +1,46 @@
-// // ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors
 
-// import 'package:car_rider/components/brand_colors.dart';
-// import 'package:car_rider/utils/app_routes.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-// class LoginPage extends StatelessWidget {
-//   const LoginPage({Key? key}) : super(key: key);
+import '../components/Login_provider.dart';
+import '../components/login_form.dart';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: SingleChildScrollView(
-//           child: Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               children: [
-//                 const SizedBox(height: 70),
-//                 Image.asset(
-//                   "assets/images/logo.png",
-//                   alignment: Alignment.center,
-//                   height: 100,
-//                   width: 100,
-//                 ),
-//                 const SizedBox(height: 40),
-//                 const Text(
-//                   "Login como Motorista",
-//                   style: TextStyle(fontSize: 25, fontFamily: "Brand-Bold"),
-//                 ),
-//                 Form(
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(20),
-//                     child: Column(
-//                       // ignore: prefer_const_literals_to_create_immutables
-//                       children: [
-//                         TextField(
-//                           keyboardType: TextInputType.emailAddress,
-//                           decoration: InputDecoration(
-//                             labelText: "E-mail",
-//                             labelStyle: TextStyle(
-//                               fontSize: 14,
-//                             ),
-//                             hintStyle:
-//                                 TextStyle(color: Colors.grey, fontSize: 10),
-//                           ),
-//                           style: TextStyle(fontSize: 14),
-//                         ),
-//                         SizedBox(height: 10),
-//                         TextField(
-//                           obscureText: true,
-//                           decoration: InputDecoration(
-//                             labelText: "Senha",
-//                             labelStyle: TextStyle(
-//                               fontSize: 14,
-//                             ),
-//                             hintStyle:
-//                                 TextStyle(color: Colors.grey, fontSize: 10),
-//                           ),
-//                           style: TextStyle(fontSize: 14),
-//                         ),
-//                         SizedBox(height: 40),
-//                         TextButton(
-//                           // ignore: sort_child_properties_last
-//                           child: SizedBox(
-//                             height: 35,
-//                             child: Center(
-//                               child: Text(
-//                                 "ENTRAR",
-//                                 style: TextStyle(
-//                                   fontSize: 18,
-//                                   fontFamily: "Brand-Bold",
-//                                   color: Colors.white,
-//                                 ),
-//                               ),
-//                             ),
-//                           ),
-//                           onPressed: () {},
-//                           style: TextButton.styleFrom(
-//                             shape: RoundedRectangleBorder(
-//                               borderRadius: BorderRadius.circular(25),
-//                             ),
-//                             backgroundColor: BrandColors.colorGreen,
-//                           ),
-//                         ),
-//                         TextButton(
-//                           child: Text(
-//                             "Não possui conto como Motorista? Clique aqui",
-//                             style: TextStyle(
-//                                 color: Colors.black,
-//                                 fontFamily: "Brand-Regular"),
-//                           ),
-//                           onPressed: () {
-//                             // Navigator.of(context).pop();
-//                             Navigator.of(context).pushNamedAndRemoveUntil(
-//                                 AppRoutes.REGISTRATION_PAGE, (route) => false);
-//                           },
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<LoginProvider>(context);
+    bool isLogin = provider.isLogin;
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 70),
+                Image.asset(
+                  "assets/images/logo.png",
+                  alignment: Alignment.center,
+                  height: 100,
+                  width: 100,
+                ),
+                const SizedBox(height: 40),
+                Text(
+                  !isLogin
+                      ? "Registrar como Motorista"
+                      : "Login como Motorista",
+                  style: TextStyle(fontSize: 25, fontFamily: "Brand-Bold"),
+                ),
+                LoginForm(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
