@@ -1,5 +1,8 @@
 import 'package:car_rider/components/Login_provider.dart';
 import 'package:car_rider/components/validator.dart';
+import 'package:car_rider/screens/main_page.dart';
+import 'package:car_rider/utils/app_routes.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +12,7 @@ class LoginForm extends StatelessWidget {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final emailControler = TextEditingController();
-  final passowrodController = TextEditingController();
+  final passowordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +96,7 @@ class LoginForm extends StatelessWidget {
               ),
             if (!isLogin) const SizedBox(height: 10),
             TextFormField(
-              controller: passowrodController,
+              controller: passowordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: "Senha",
@@ -130,9 +133,23 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {
-                provider.registerUser(
-                    emailControler.text, passowrodController.text);
+              onPressed: () async {
+                final msg = ScaffoldMessenger.of(context);
+
+                final connectivityResult =
+                    await Connectivity().checkConnectivity();
+
+                if (connectivityResult != ConnectivityResult.mobile &&
+                    connectivityResult != ConnectivityResult.wifi) {
+                  msg.showSnackBar(
+                      SnackBar(content: Text("Sem conexão com internet")));
+                }
+                provider.registerOrLoginUser(
+                    name: nameController.text,
+                    email: emailControler.text,
+                    password: passowordController.text,
+                    phone: phoneController.text,
+                    context: context);
               },
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
