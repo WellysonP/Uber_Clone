@@ -39,6 +39,7 @@ dependencies:
   firebase_database: ^9.0.16
   provider: ^6.0.3
   connectivity_plus: ^2.3.5
+  google_maps_flutter: ^2.2.1
 
 dev_dependencies:
   flutter_test:

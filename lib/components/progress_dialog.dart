@@ -1,7 +1,5 @@
 import 'package:car_rider/components/brand_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ProgressDialog extends StatelessWidget {
   final String status;

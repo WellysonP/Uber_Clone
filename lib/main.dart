@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
           fontFamily: "Brand-Regular",
           primarySwatch: Colors.blue,
         ),
-        // home: const LoginPage(),
-        routes: {
-          AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
-          AppRoutes.MAIN_PAGE: (context) => const MainPage(),
-        },
+        home: const MainPage(),
+        // routes: {
+        //   AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
+        //   AppRoutes.MAIN_PAGE: (context) => const MainPage(),
+        // },
       ),
     );
   }
